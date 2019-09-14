@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: dev # Branch to update
+  branch: master # Branch to update
 
 media_folder: "static/img" # Media files will be stored in the repo under static/img
 public_folder: "/img" # Folder path where uploaded files will be accessed, relative to the base of the built site
