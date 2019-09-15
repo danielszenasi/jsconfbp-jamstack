@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `sourcing markdown recipe`,
     description: `Example sourcing markdown`,
-    author: `@gatsbyjs`,
+    author: `@gatsbyjs`
   },
   plugins: [
     `gatsby-transformer-remark`,
@@ -10,8 +10,16 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `content`,
-        path: `${__dirname}/src/content`,
-      },
+        path: `${__dirname}/src/content`
+      }
     },
-  ],
-}
+    `gatsby-plugin-postcss`,
+    {
+      resolve: 'gatsby-plugin-purgecss',
+      options: {
+        tailwind: true,
+        purgeOnly: ['src/css/style.css', 'src/css/global.css']
+      }
+    }
+  ]
+};
