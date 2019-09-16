@@ -49,17 +49,10 @@ function Header({ siteTitle }) {
             </Link>
 
             <Link
-              to="/about"
+              to="/products"
               className="block md:inline-block mt-4 md:mt-0 mr-6 no-underline text-white"
             >
-              About
-            </Link>
-
-            <Link
-              to="/contact"
-              className="block md:inline-block mt-4 md:mt-0 no-underline text-white"
-            >
-              Contact
+              Products
             </Link>
           </div>
         </div>
