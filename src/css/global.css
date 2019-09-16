@@ -1,3 +1,23 @@
-.gradient {
-  background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+.page-container {
+  transition: transform 0.25s;
+}
+
+.page-container-cart-open {
+  transform: translateX(-400px);
+}
+
+.cart-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 400;
+  background-color: #fff;
+  transform: translateX(100%);
+  transition: transform 0.25s;
+  padding: 1rem;
+}
+
+.cart-container-open {
+  transform: translateX(0);
 }

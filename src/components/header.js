@@ -1,9 +1,11 @@
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import { useStore } from '../tools/state';
 
 function Header({ siteTitle }) {
   const [isExpanded, toggleExpansion] = useState(false);
+  const [state, dispatch] = useStore();
 
   return (
     <nav className="bg-teal-700">
@@ -20,7 +22,6 @@ function Header({ siteTitle }) {
           </svg>
           <span className="font-bold text-xl tracking-tight">{siteTitle}</span>
         </Link>
-
         <button
           className="block md:hidden border border-white flex items-center px-3 py-2 rounded text-white"
           onClick={() => toggleExpansion(!isExpanded)}
@@ -56,6 +57,15 @@ function Header({ siteTitle }) {
             </Link>
           </div>
         </div>
+        <button
+          onClick={() =>
+            dispatch({
+              type: 'toggleCart'
+            })
+          }
+        >
+          Toggle cart
+        </button>
       </div>
     </nav>
   );
