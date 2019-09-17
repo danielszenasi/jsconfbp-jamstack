@@ -1,7 +1,7 @@
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { useStore } from '../tools/state';
+import { useStore } from '../store/StoreContext';
 
 function Header({ siteTitle }) {
   const [isExpanded, toggleExpansion] = useState(false);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStore } from '../tools/state';
+import { useStore } from '../store/StoreContext';
 import classNames from 'classnames';
 import Header from './header';
 

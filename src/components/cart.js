@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { useStore } from '../tools/state';
+import { useStore } from '../store/StoreContext';
 
 function Cart() {
   const [{ layout }] = useStore();
