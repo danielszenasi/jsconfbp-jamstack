@@ -10,7 +10,6 @@ import Cart from './cart';
 
 function Layout({ children }) {
   const mainReducer = ({ cart, layout }, action) => {
-    console.log(cart, layout, action);
     return {
       cart: cartReducer(cart, action),
       layout: layoutReducer(layout, action)

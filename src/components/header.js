@@ -2,6 +2,7 @@ import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useStore } from '../store/StoreContext';
+import { types } from '../store/types';
 
 function Header({ siteTitle }) {
   const [isExpanded, toggleExpansion] = useState(false);
@@ -60,7 +61,7 @@ function Header({ siteTitle }) {
         <button
           onClick={() =>
             dispatch({
-              type: 'toggleCart'
+              type: types.TOGGLE_CART
             })
           }
         >

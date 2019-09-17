@@ -1,15 +1,25 @@
+import { types } from '../types';
+
 export const initialState = {
-  theme: { primary: 'green' }
+  products: []
 };
 
 export const reducer = (state, action) => {
   switch (action.type) {
-    case 'changeTheme':
+    case types.INCREMENT_QUANTITY:
       return {
         ...state,
-        theme: action.newTheme
+        products: [...state.products, action.payload]
       };
-
+    case types.DECREASE_QUANTITY: {
+      const index = state.products.findIndex(product => product.slug === action.payload.slug);
+      const newProducts = [...state.products];
+      newProducts.splice(index, 1);
+      return {
+        ...state,
+        products: newProducts
+      };
+    }
     default:
       return state;
   }
