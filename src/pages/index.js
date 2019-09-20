@@ -6,7 +6,7 @@ const IndexPage = () => (
     <StaticQuery
       query={graphql`
         query {
-          allMarkdownRemark {
+          allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "post-page" } } }) {
             edges {
               node {
                 fields {
@@ -14,6 +14,7 @@ const IndexPage = () => (
                 }
                 frontmatter {
                   title
+                  date
                 }
               }
             }
@@ -25,16 +26,17 @@ const IndexPage = () => (
           ({
             node: {
               fields: { slug },
-              frontmatter: { title }
+              frontmatter: { title, date }
             }
           }) => (
-            <div class="max-w-sm rounded overflow-hidden shadow-lg">
-              <div class="px-6 py-4">
-                <div class="font-bold text-xl mb-2">
-                  <Link to={slug}>{title}</Link>
+            <Link to={slug}>
+              <div class="w-56 rounded overflow-hidden shadow-lg m-6 bg-orange-500 text-white">
+                <div class="px-6 py-10">
+                  <div class="font-bold text-xl mb-2">{title}</div>
+                  <div>{new Intl.DateTimeFormat('en-US').format(new Date(date))}</div>
                 </div>
               </div>
-            </div>
+            </Link>
           )
         );
       }}
