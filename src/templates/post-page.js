@@ -9,7 +9,7 @@ export default function Template({ data }) {
         <h1 className="font-bold text-3xl mb-2">{post.frontmatter.title}</h1>
         <p className="block mb-5">{post.frontmatter.date}</p>
       </header>
-      <section dangerouslySetInnerHTML={{ __html: post.html }} />
+      <section className="markdown" dangerouslySetInnerHTML={{ __html: post.html }} />
     </article>
   );
 }
