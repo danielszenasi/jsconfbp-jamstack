@@ -1,16 +1,15 @@
 import { Link } from 'gatsby'
-import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import { useStore } from '../store/StoreContext'
 import { types } from '../store/types'
 
-function Header({ siteTitle }) {
+function Header() {
   const [isExpanded, toggleExpansion] = useState(false)
-  const [state, dispatch] = useStore()
+  const [, dispatch] = useStore()
 
   return (
     <nav className="bg-black text-white">
-      <div className="flex flex-wrap items-center max-w-4xl mx-auto p-4 md:p-8">
+      <div className="flex flex-wrap container mx-auto p-4 md:p-8">
         <Link to="/" className="flex items-center no-underline">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -94,14 +93,6 @@ function Header({ siteTitle }) {
       </div>
     </nav>
   )
-}
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
 }
 
 export default Header

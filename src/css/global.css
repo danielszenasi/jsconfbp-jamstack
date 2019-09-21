@@ -123,3 +123,23 @@
 .markdown .highlight pre {
   @apply bg-gray-100 !important;
 }
+
+/**
+ * Product list
+ */
+.product-list {
+  display: grid;
+  grid-gap: theme('spacing.16');
+}
+
+@screen sm {
+  .product-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@screen lg {
+  .product-list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
