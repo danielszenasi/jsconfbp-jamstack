@@ -9,9 +9,11 @@ function Cart() {
 
   return (
     <div
-      className={classNames('cart-container', {
-        'cart-container-open': layout.isCartOpen,
-      })}
+      className={classNames(
+        'cart-container',
+        'bg-gray-300',
+        layout.isCartOpen && 'cart-container-open',
+      )}
     >
       {Object.values(cart.products).map(product => (
         <div key={product.slug}>

@@ -4,6 +4,8 @@
 
 .page-container-cart-open {
   transform: translateX(-400px);
+  filter: blur(2px);
+  transition: all 0.25s;
 }
 
 .cart-container {
@@ -11,8 +13,7 @@
   top: 0;
   right: 0;
   bottom: 0;
-  width: 400;
-  background-color: #fff;
+  width: 400px;
   transform: translateX(100%);
   transition: transform 0.25s;
   padding: 1rem;
