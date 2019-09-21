@@ -30,9 +30,9 @@ const IndexPage = () => (
             }
           }) => (
             <Link to={slug}>
-              <div class="w-56 rounded overflow-hidden shadow-lg m-6 bg-orange-500 text-white">
-                <div class="px-6 py-10">
-                  <div class="font-bold text-xl mb-2">{title}</div>
+              <div className="w-56 rounded overflow-hidden shadow-lg m-6 bg-orange-500 text-white">
+                <div className="px-6 py-10">
+                  <div className="font-bold text-xl mb-2">{title}</div>
                   <div>{new Intl.DateTimeFormat('en-US').format(new Date(date))}</div>
                 </div>
               </div>

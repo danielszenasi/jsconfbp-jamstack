@@ -23,7 +23,7 @@ exports.handler = async (event, context) => {
   });
 
   const item = {
-    data: { ...data, userId: claims.sub }
+    data: { products: data, userId: claims.sub }
   };
   /* construct the fauna query */
   const saveOrder = client.query(q.Create(q.Ref('classes/orders'), item));

@@ -18,22 +18,11 @@ export default function Template({ data }) {
         onClick={() =>
           dispatch({
             type: types.INCREMENT_QUANTITY,
-            payload: { slug: fields.slug, name: frontmatter.name }
+            payload: { slug: fields.slug, name: frontmatter.name, price: frontmatter.price }
           })
         }
       >
         Add
-      </button>
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={() =>
-          dispatch({
-            type: types.DECREASE_QUANTITY,
-            payload: { slug: fields.slug }
-          })
-        }
-      >
-        Remove
       </button>
     </div>
   );
