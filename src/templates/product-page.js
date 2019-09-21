@@ -1,31 +1,46 @@
-import React from 'react';
-import { graphql } from 'gatsby';
-import { useStore } from '../store/StoreContext';
-import { types } from '../store/types';
+import React from 'react'
+import { Link, graphql } from 'gatsby'
+import { useStore } from '../store/StoreContext'
+import { types } from '../store/types'
 
-export default function Template({ data }) {
-  const { markdownRemark } = data; // data.markdownRemark holds your post data
-  const { frontmatter, html, fields } = markdownRemark;
-  const [state, dispatch] = useStore();
+export default function Template({
+  data: {
+    markdownRemark: { frontmatter, html, fields },
+  },
+}) {
+  const [, dispatch] = useStore()
+
   return (
-    <div className="product-post">
-      <img src={frontmatter.image}></img>
-      <h1>{frontmatter.name}</h1>
-      <h2>{frontmatter.price}</h2>
-      <div className="product-content" dangerouslySetInnerHTML={{ __html: html }} />
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={() =>
-          dispatch({
-            type: types.INCREMENT_QUANTITY,
-            payload: { slug: fields.slug, name: frontmatter.name, price: frontmatter.price }
-          })
-        }
-      >
-        Add
-      </button>
+    <div className="flex md:-mx-4">
+      <img src={frontmatter.image} className="md:w-1/3 md:px-4" />
+      <div className="md:w-2/3 md:px-4">
+        <Link className="text-gray-700" to="/">
+          ← Back to product list
+        </Link>
+        <h1 className="font-bold text-4xl">{frontmatter.name}</h1>
+        <span className="block text-lg">€{frontmatter.price}</span>
+        <button
+          className="btn btn-red mt-4"
+          onClick={() =>
+            dispatch({
+              type: types.INCREMENT_QUANTITY,
+              payload: {
+                slug: fields.slug,
+                name: frontmatter.name,
+                price: frontmatter.price,
+              },
+            })
+          }
+        >
+          Add to cart
+        </button>
+        <div
+          className="markdown mt-4"
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+      </div>
     </div>
-  );
+  )
 }
 
 export const pageQuery = graphql`
@@ -43,4 +58,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`
