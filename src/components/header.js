@@ -5,7 +5,14 @@ import { types } from '../store/types'
 
 function Header() {
   const [isExpanded, toggleExpansion] = useState(false)
-  const [, dispatch] = useStore()
+  const [{ cart }, dispatch] = useStore()
+
+  const numberOfProducts = Object.values(cart.products).reduce(
+    (quantity, product) => {
+      return quantity + product.quantity
+    },
+    0,
+  )
 
   return (
     <nav className="bg-black text-white">
@@ -67,7 +74,7 @@ function Header() {
           </div>
 
           <button
-            className="w-8 ml-4"
+            className="relative w-8 ml-4"
             onClick={() =>
               dispatch({
                 type: types.TOGGLE_CART,
@@ -88,6 +95,11 @@ function Header() {
                 strokeMiterlimit="10"
               />
             </svg>
+            {numberOfProducts !== 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-600 text-white w-6 h-6 rounded-full">
+                {numberOfProducts}
+              </span>
+            )}
           </button>
         </div>
       </div>

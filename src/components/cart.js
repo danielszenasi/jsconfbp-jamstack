@@ -11,7 +11,6 @@ function Cart() {
     <div
       className={classNames(
         'cart-container',
-        'bg-gray-300',
         layout.isCartOpen && 'cart-container-open',
       )}
     >

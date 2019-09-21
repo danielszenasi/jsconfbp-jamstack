@@ -4,7 +4,7 @@
 
 .page-container-cart-open {
   transform: translateX(-400px);
-  filter: blur(2px);
+  filter: blur(1px);
   transition: all 0.25s;
 }
 

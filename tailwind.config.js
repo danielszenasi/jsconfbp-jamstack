@@ -30,6 +30,9 @@ module.exports = {
         '11/12': '91.666667%',
         full: '100%',
       },
+      inset: {
+        '-2': '-0.5rem',
+      },
     },
   },
   variants: {},
