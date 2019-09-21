@@ -51,10 +51,10 @@ function Header({ siteTitle }) {
             </Link>
 
             <Link
-              to="/products"
+              to="/posts"
               className="block md:inline-block mt-4 md:mt-0 mr-6 no-underline text-white"
             >
-              Products
+              Blog
             </Link>
             <Link
               to="/app/orders"

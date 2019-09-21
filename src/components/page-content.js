@@ -11,7 +11,7 @@ function PageContent({ children }) {
       className={classNames('page-container', { 'page-container-cart-open': layout.isCartOpen })}
     >
       <Header siteTitle="Supercharge Store"></Header>
-      {children}
+      <main className="max-w-lg mx-auto py-10 px-5">{children}</main>
     </div>
   );
 }
