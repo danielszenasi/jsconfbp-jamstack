@@ -1,30 +1,36 @@
-import { Link } from 'gatsby';
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
-import { useStore } from '../store/StoreContext';
-import { types } from '../store/types';
+import { Link } from 'gatsby'
+import PropTypes from 'prop-types'
+import React, { useState } from 'react'
+import { useStore } from '../store/StoreContext'
+import { types } from '../store/types'
 
 function Header({ siteTitle }) {
-  const [isExpanded, toggleExpansion] = useState(false);
-  const [state, dispatch] = useStore();
+  const [isExpanded, toggleExpansion] = useState(false)
+  const [state, dispatch] = useStore()
 
   return (
-    <nav className="bg-teal-700">
-      <div className="flex flex-wrap items-center justify-between max-w-4xl mx-auto p-4 md:p-8">
-        <Link to="/" className="flex items-center no-underline text-white">
+    <nav className="bg-black text-white">
+      <div className="flex flex-wrap items-center max-w-4xl mx-auto p-4 md:p-8">
+        <Link to="/" className="flex items-center no-underline">
           <svg
-            className="fill-current h-8 mr-2 w-8"
-            width="54"
-            height="54"
-            viewBox="0 0 54 54"
             xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 54 54"
+            className="w-10"
           >
-            <path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" />
+            <path
+              fill="currentColor"
+              d="M17.516 47.585a22.533 22.533 0 0 0 9.475 2.077c12.5 0 22.67-10.168 22.67-22.666 0-6.34-2.617-12.078-6.827-16.196l2.616-3.499C50.708 12.231 54 19.236 54 26.996 54 41.886 41.884 54 26.99 54c-4.852 0-9.409-1.288-13.349-3.537l-3.823 2.84 22.015-29.274 7.44 7.394-21.757 16.162zM38.21 7.292a22.566 22.566 0 0 0-11.214-2.968c-12.494 0-22.66 10.136-22.66 22.594 0 6.911 3.13 13.107 8.05 17.255l-2.6 3.468C3.812 42.7 0 35.244 0 26.918 0 12.075 12.11 0 26.996 0a26.896 26.896 0 0 1 14.95 4.516l3.288-2.442-22.015 29.274-7.44-7.395L38.21 7.292z"
+            />
           </svg>
-          <span className="font-bold text-xl tracking-tight">{siteTitle}</span>
+
+          <span className="ml-2 font-bold text-md leading-tight">
+            SUPERCHARGE
+            <br />
+            SHOP
+          </span>
         </Link>
         <button
-          className="block md:hidden border border-white flex items-center px-3 py-2 rounded text-white"
+          className="block md:hidden border border-white flex items-center px-3 py-2 rounded"
           onClick={() => toggleExpansion(!isExpanded)}
         >
           <svg
@@ -40,50 +46,62 @@ function Header({ siteTitle }) {
         <div
           className={`${
             isExpanded ? `block` : `hidden`
-          } md:block md:flex md:items-center w-full md:w-auto`}
+          } md:block md:flex md:items-center w-full md:w-auto ml-auto`}
         >
-          <div className="text-sm">
-            <Link
-              to="/"
-              className="block mt-4 md:inline-block md:mt-0 mr-6 no-underline text-white"
-            >
-              Home
+          <div className="text-lg font-bold">
+            <Link to="/" className="block px-4 md:inline-block no-underline">
+              home
             </Link>
 
             <Link
               to="/posts"
-              className="block md:inline-block mt-4 md:mt-0 mr-6 no-underline text-white"
+              className="block px-4 md:inline-block no-underline"
             >
-              Blog
+              blog
             </Link>
             <Link
               to="/app/orders"
-              className="block md:inline-block mt-4 md:mt-0 mr-6 no-underline text-white"
+              className="block px-4 md:inline-block no-underline"
             >
-              Orders
+              orders
             </Link>
           </div>
+
+          <button
+            className="w-8 ml-4"
+            onClick={() =>
+              dispatch({
+                type: types.TOGGLE_CART,
+              })
+            }
+          >
+            <svg viewBox="0 0 30 30">
+              <circle cx="22" cy="25" r="2" fill="currentColor" />
+              <circle cx="12" cy="25" r="2" fill="currentColor" />
+              <path d="M24 20H10.5L7 9h20z" fill="currentColor" />
+              <path
+                d="M2 3h1.878a1.5 1.5 0 0 1 1.439 1.077l4.261 14.488A2 2 0 0 0 11.496 20h10.976c.902 0 1.692-.604 1.93-1.474L27 9H7"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeMiterlimit="10"
+              />
+            </svg>
+          </button>
         </div>
-        <button
-          onClick={() =>
-            dispatch({
-              type: types.TOGGLE_CART
-            })
-          }
-        >
-          Toggle cart
-        </button>
       </div>
     </nav>
-  );
+  )
 }
 
 Header.propTypes = {
-  siteTitle: PropTypes.string
-};
+  siteTitle: PropTypes.string,
+}
 
 Header.defaultProps = {
-  siteTitle: ``
-};
+  siteTitle: ``,
+}
 
-export default Header;
+export default Header
