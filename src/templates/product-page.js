@@ -15,14 +15,16 @@ export default function Template({
     <div className="flex flex-col md:flex-row md:-mx-8">
       <Img
         fluid={frontmatter.image.childImageSharp.fluid}
-        className="h-full w-full md:w-1/3 md:mx-8 rounded"
+        className="h-full w-full md:w-1/3 md:mx-8 rounded-lg"
       />
       <div className="mt-4 md:mt-0 md:w-2/3 md:mx-8">
         <Link className="text-gray-700 font-bold text-red-600" to="/">
           ← Back to product list
         </Link>
-        <h1 className="font-bold text-4xl">{frontmatter.name}</h1>
-        <span className="block text-lg">€{frontmatter.price}</span>
+        <h1 className="font-bold text-4xl text-gray-900">{frontmatter.name}</h1>
+        <span className="block font-semibold text-lg text-gray-700">
+          €{frontmatter.price}
+        </span>
         <button
           className="btn btn-red mt-4"
           onClick={() =>
