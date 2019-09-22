@@ -1,5 +1,6 @@
+import { graphql, Link } from 'gatsby'
+import Img from 'gatsby-image'
 import React from 'react'
-import { Link, graphql } from 'gatsby'
 import { useStore } from '../store/StoreContext'
 import { types } from '../store/types'
 
@@ -11,10 +12,13 @@ export default function Template({
   const [, dispatch] = useStore()
 
   return (
-    <div className="flex md:-mx-4">
-      <img src={frontmatter.image} className="md:w-1/3 md:px-4" />
-      <div className="md:w-2/3 md:px-4">
-        <Link className="text-gray-700" to="/">
+    <div className="flex flex-col md:flex-row md:-mx-8">
+      <Img
+        fluid={frontmatter.image.childImageSharp.fluid}
+        className="h-full w-full md:w-1/3 md:mx-8 rounded"
+      />
+      <div className="mt-4 md:mt-0 md:w-2/3 md:mx-8">
+        <Link className="text-gray-700 font-bold text-red-600" to="/">
           ← Back to product list
         </Link>
         <h1 className="font-bold text-4xl">{frontmatter.name}</h1>
@@ -52,7 +56,13 @@ export const pageQuery = graphql`
         slug
       }
       frontmatter {
-        image
+        image {
+          childImageSharp {
+            fluid(quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
         price
         name
       }
