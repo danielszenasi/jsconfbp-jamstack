@@ -20,13 +20,19 @@ function Orders() {
       {Object.values(order.products).map(product => (
         <div
           key={product.slug}
-          className="flex justify-between items-center mt-1 pb-1 border-b-2 border-gray-200 last:border-b-0"
+          className="flex justify-between items-center mt-1 pb-1 border-b-2 border-gray-200 last:border-b-0 rounded-lg"
         >
           <div>
-            <div>{product.name}</div>
-            <div>€{product.price}</div>
+            <div className="font-bold text-xl text-gray-900">
+              {product.name}
+            </div>
+            <div className="font-semibold text-lg text-gray-700">
+              €{product.price}
+            </div>
           </div>
-          {product.quantity}
+          <div className="font-extrabold text-4xl text-gray-500">
+            {product.quantity}
+          </div>
         </div>
       ))}
     </div>
