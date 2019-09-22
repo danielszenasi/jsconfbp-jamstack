@@ -25,7 +25,7 @@ function Cart() {
         layout.isCartOpen && 'cart-container-open',
       )}
     >
-      <div className="flex justify-between mb-4">
+      <div className="flex justify-between mb-4 mt-4">
         <span className="text-2xl font-bold">Your Cart</span>
         <button
           className="w-8"
