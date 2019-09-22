@@ -26,7 +26,7 @@ function Header() {
 
   return (
     <nav className="bg-black text-white">
-      <div className="flex flex-wrap container mx-auto p-4 md:p-8">
+      <div className="flex flex-wrap container justify-between mx-auto p-4 md:p-8 ">
         <Link to="/" className="flex items-center no-underline">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -64,21 +64,28 @@ function Header() {
             isExpanded ? `block` : `hidden`
           } md:block md:flex md:items-center w-full md:w-auto ml-auto`}
         >
-          <div className="text-lg font-bold">
-            <Link to="/" className="block px-4 md:inline-block no-underline">
+          <div className="text-lg font-bold mt-3 md:m-0">
+            <Link
+              to="/"
+              activeClassName="text-red-600"
+              className="block p-1 md:px-4 md:inline-block no-underline"
+            >
               home
             </Link>
 
             <Link
               to="/posts"
-              className="block px-4 md:inline-block no-underline"
+              partiallyActive
+              activeClassName="text-red-600"
+              className="block p-1 md:px-4 md:inline-block no-underline"
             >
               blog
             </Link>
             {user && (
               <Link
                 to="/app/orders"
-                className="block px-4 md:inline-block no-underline"
+                activeClassName="text-red-600"
+                className="block p-1 md:px-4 md:inline-block no-underline"
               >
                 orders
               </Link>
@@ -86,7 +93,7 @@ function Header() {
           </div>
 
           <button
-            className="relative w-8 ml-4"
+            className="relative w-8 m-1 md:ml-4"
             onClick={() =>
               dispatch({
                 type: types.TOGGLE_CART,
