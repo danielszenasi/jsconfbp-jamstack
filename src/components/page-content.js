@@ -10,6 +10,7 @@ const PageContent = ({ children }) => {
     <div
       className={classNames(
         'relative',
+        'h-screen',
         'page-container',
         layout.isCartOpen && 'page-container-cart-open',
       )}
