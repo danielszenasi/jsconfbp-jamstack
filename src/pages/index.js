@@ -10,7 +10,11 @@ const IndexPage = ({ data }) => (
           frontmatter: { name, image, price },
         },
       }) => (
-        <Link key={slug} className="block shadow-lg hover:shadow-xl" to={slug}>
+        <Link
+          key={slug}
+          className="block rounded-lg overflow-hidden shadow-lg hover:shadow-xl"
+          to={slug}
+        >
           <div className="relative pb-full">
             <img
               src={image}
