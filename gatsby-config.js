@@ -70,6 +70,7 @@ module.exports = {
       options: {
         tailwind: true,
         purgeOnly: ['src/css/style.css', 'src/css/global.css'],
+        whitelist: ['a'],
       },
     },
     `gatsby-plugin-netlify-cms`,
