@@ -17,6 +17,8 @@ import {
 import PageContent from './page-content'
 import Cart from './cart'
 import netlifyIdentity from 'netlify-identity-widget'
+import Helmet from 'react-helmet'
+import { useStaticQuery, graphql } from 'gatsby'
 
 if (typeof window !== 'undefined') {
   netlifyIdentity.init()
@@ -24,6 +26,20 @@ if (typeof window !== 'undefined') {
 }
 
 function Layout({ children }) {
+  const {
+    site: {
+      siteMetadata: { title },
+    },
+  } = useStaticQuery(graphql`
+    query TitleQuery {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+    }
+  `)
+
   const mainReducer = ({ cart, layout, orders }, action) => {
     return {
       cart: cartReducer(cart, action),
@@ -40,6 +56,9 @@ function Layout({ children }) {
 
   return (
     <StateProvider initialState={initialState} reducer={mainReducer}>
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
       <PageContent>{children}</PageContent>
       <Cart />
     </StateProvider>
