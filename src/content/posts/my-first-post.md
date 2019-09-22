@@ -3,6 +3,8 @@ templateKey: post-page
 title: Security for Modern Web Frameworks
 date: 2019-07-10T00:00:00.000Z
 ---
+[Cross post from the official Gatsby blog.](https://www.gatsbyjs.org/blog/2019-04-06-security-for-modern-web-frameworks/)
+
 Among the many lauded benefits of using Gatsby (and other static app frameworks) is security. It is encouraging to see a framework not require developers to stress about security, but for those new to Gatsby or web development, this can contribute to a myth that there are no security issues.
 
 There are indeed whole classes of security vulnerabilities that are eliminated by using Gatsby for web development; but there are still other vulnerabilities that are shared and some that are created. As a Gatsby developer, you need to make sure you are aware of these possible vulnerabilities and how to remedy them.
