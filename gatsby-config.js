@@ -28,5 +28,19 @@ module.exports = {
       },
     },
     `gatsby-plugin-netlify-cms`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: 'Supercharge Shop',
+        short_name: 'SC Shop',
+        start_url: '/',
+        background_color: '#6b37bf',
+        theme_color: '#6b37bf',
+        // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
+        // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
+        display: 'standalone',
+        icon: 'src/images/logo.png', // This path is relative to the root of the site.
+      },
+    },
   ],
 }
