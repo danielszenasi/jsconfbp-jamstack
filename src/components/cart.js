@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import classNames from 'classnames'
 import { useStore } from '../store/StoreContext'
 import { types } from '../store/types'
@@ -6,6 +6,17 @@ import netlifyIdentity from 'netlify-identity-widget'
 
 function Cart() {
   const [{ layout, cart }, dispatch] = useStore()
+  const [user, setUser] = useState()
+
+  useEffect(() => {
+    netlifyIdentity.on('login', user => setUser(user))
+    netlifyIdentity.on('logout', () => setUser(null))
+
+    const user = netlifyIdentity.currentUser()
+    setUser(user)
+  }, [])
+
+  const products = Object.values(cart.products)
 
   return (
     <div
@@ -29,13 +40,16 @@ function Cart() {
           </svg>
         </button>
       </div>
-      <div className="flex justify-between border-b-2">
-        <div className="flex-grow text-left">Product</div>
-        <div className="flex-grow-0 w-20 text-center">Qty.</div>
-        <div className="flex-grow-0 w-20 text-center">Remove</div>
-      </div>
-
-      {Object.values(cart.products).map(product => (
+      {products.length ? (
+        <div className="flex justify-between border-b-2">
+          <div className="flex-grow text-left">Product</div>
+          <div className="flex-grow-0 w-20 text-center">Qty.</div>
+          <div className="flex-grow-0 w-20 text-center">Remove</div>
+        </div>
+      ) : (
+        <div className="text-center mt-20">Your Cart is sad 😔</div>
+      )}
+      {products.map(product => (
         <div
           key={product.slug}
           className="flex justify-between items-center py-2 border-b-2 border-gray-200"
@@ -64,24 +78,34 @@ function Cart() {
           </div>
         </div>
       ))}
-
-      <button
-        className="btn btn-red w-full mt-8"
-        onClick={() =>
-          dispatch({
-            type: types.CHECKOUT,
-            payload: cart.products,
-          })
-        }
-      >
-        Checkout
-      </button>
-      {/* <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={() => netlifyIdentity.open()}
-      >
-        Login
-      </button> */}
+      {user && products.length !== 0 && (
+        <button
+          className="btn btn-red w-full mt-8"
+          onClick={() =>
+            dispatch({
+              type: types.CHECKOUT,
+              payload: cart.products,
+            })
+          }
+        >
+          Checkout
+        </button>
+      )}
+      {!user ? (
+        <button
+          className="btn btn-red w-full mt-8"
+          onClick={() => netlifyIdentity.open()}
+        >
+          Login
+        </button>
+      ) : (
+        <button
+          className="btn btn-red w-full mt-8"
+          onClick={() => netlifyIdentity.logout()}
+        >
+          Logout
+        </button>
+      )}
     </div>
   )
 }

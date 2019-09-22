@@ -1,11 +1,21 @@
 import { Link } from 'gatsby'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useStore } from '../store/StoreContext'
 import { types } from '../store/types'
+import netlifyIdentity from 'netlify-identity-widget'
 
 function Header() {
   const [isExpanded, toggleExpansion] = useState(false)
   const [{ cart }, dispatch] = useStore()
+  const [user, setUser] = useState()
+
+  useEffect(() => {
+    netlifyIdentity.on('login', user => setUser(user))
+    netlifyIdentity.on('logout', () => setUser(null))
+
+    const user = netlifyIdentity.currentUser()
+    setUser(user)
+  }, [])
 
   const numberOfProducts = Object.values(cart.products).reduce(
     (quantity, product) => {
@@ -65,12 +75,14 @@ function Header() {
             >
               blog
             </Link>
-            <Link
-              to="/app/orders"
-              className="block px-4 md:inline-block no-underline"
-            >
-              orders
-            </Link>
+            {user && (
+              <Link
+                to="/app/orders"
+                className="block px-4 md:inline-block no-underline"
+              >
+                orders
+              </Link>
+            )}
           </div>
 
           <button
