@@ -42,6 +42,11 @@ export const reducer = (state, action) => {
         }, {}),
       }
     }
+    case types.CHECKOUT_SUCCESS: {
+      console.log(action)
+
+      return { ...state, products: {} }
+    }
     default:
       return state
   }

@@ -1,38 +1,49 @@
-import React from 'react';
-import { StateProvider } from '../store/StoreContext';
-import { reducer as cartReducer, initialState as cartInitialState } from '../store/reducers/cart';
+import React from 'react'
+import { StateProvider } from '../store/StoreContext'
+import {
+  reducer as cartReducer,
+  initialState as cartInitialState,
+} from '../store/reducers/cart'
 import {
   reducer as layoutReducer,
-  initialState as layoutInitialState
-} from '../store/reducers/layout';
-import PageContent from './page-content';
-import Cart from './cart';
-import netlifyIdentity from 'netlify-identity-widget';
+  initialState as layoutInitialState,
+} from '../store/reducers/layout'
+
+import {
+  reducer as ordersReducer,
+  initialState as ordersInitialState,
+} from '../store/reducers/orders'
+
+import PageContent from './page-content'
+import Cart from './cart'
+import netlifyIdentity from 'netlify-identity-widget'
 
 if (typeof window !== 'undefined') {
-  netlifyIdentity.init();
-  window.netlifyIdentity = netlifyIdentity;
+  netlifyIdentity.init()
+  window.netlifyIdentity = netlifyIdentity
 }
 
 function Layout({ children }) {
-  const mainReducer = ({ cart, layout }, action) => {
+  const mainReducer = ({ cart, layout, orders }, action) => {
     return {
       cart: cartReducer(cart, action),
-      layout: layoutReducer(layout, action)
-    };
-  };
+      layout: layoutReducer(layout, action),
+      orders: ordersReducer(orders, action),
+    }
+  }
 
   const initialState = {
     cart: cartInitialState,
-    layout: layoutInitialState
-  };
+    layout: layoutInitialState,
+    orders: ordersInitialState,
+  }
 
   return (
     <StateProvider initialState={initialState} reducer={mainReducer}>
       <PageContent>{children}</PageContent>
       <Cart />
     </StateProvider>
-  );
+  )
 }
 
-export default Layout;
+export default Layout
