@@ -42,9 +42,15 @@ function Cart() {
       </div>
       {products.length ? (
         <div className="flex justify-between border-b-2">
-          <div className="flex-grow text-left">Product</div>
-          <div className="flex-grow-0 w-20 text-center">Qty.</div>
-          <div className="flex-grow-0 w-20 text-center">Remove</div>
+          <div className="uppercase text-xs font-semibold text-gray-600 flex-grow text-left">
+            Product
+          </div>
+          <div className="uppercase text-xs font-semibold text-gray-600 flex-grow-0 w-16 text-center">
+            Qty.
+          </div>
+          <div className="uppercase text-xs font-semibold text-gray-600 flex-grow-0 w-16 text-center">
+            Remove
+          </div>
         </div>
       ) : (
         <div className="text-center mt-20">Your Cart is sad 😔</div>
@@ -58,9 +64,9 @@ function Cart() {
             <div className="text-xl">{product.name}</div>
             <div>€{product.price}</div>
           </div>
-          <div className="flex-grow-0 w-20 text-center">{product.quantity}</div>
+          <div className="flex-grow-0 w-16 text-center">{product.quantity}</div>
 
-          <div className="flex-grow-0 w-20">
+          <div className="flex-grow-0 w-16">
             <button
               className="w-8 block m-auto"
               onClick={() =>
