@@ -1,4 +1,5 @@
 import React from 'react'
+import Img from 'gatsby-image'
 import { Link, graphql } from 'gatsby'
 
 const IndexPage = ({ data }) => (
@@ -16,15 +17,15 @@ const IndexPage = ({ data }) => (
           to={slug}
         >
           <div className="relative pb-full">
-            <img
-              src={image}
-              className="absolute h-full w-full object-cover"
+            <Img
+              fluid={image.childImageSharp.fluid}
               alt={name}
+              style={{ position: 'absolute', width: '100%', height: '100%' }}
             />
           </div>
           <div className="bg-white p-4">
-            <div className="font-bold text-2xl">{name}</div>
-            <div>€{price}</div>
+            <div className="font-bold text-2xl text-gray-900">{name}</div>
+            <div className="font-semibold text-l text-gray-700">€{price}</div>
           </div>
         </Link>
       ),
@@ -43,7 +44,13 @@ export const query = graphql`
             slug
           }
           frontmatter {
-            image
+            image {
+              childImageSharp {
+                fluid(maxWidth: 610, quality: 80, fit: COVER) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
             price
             name
           }
