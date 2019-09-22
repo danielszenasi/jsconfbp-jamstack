@@ -15,16 +15,16 @@ exports.handler = async (event, context) => {
   const message = Object.values(data).map(
     item => `${item.quantity} ${item.name}`,
   )
-  console.log(
-    `${claims.email} has succesfully ordered ${message.join(' and ')}`,
-  )
+  const [name, domain] = claims.email.split('@')
+  const email = `${name.substr(0, 2)}${'*'.repeat(name.length - 2)}@${domain}`
+
   const sendSlackMessage = fetch(process.env.SLACK_WEBHOOK_URL, {
     headers: {
       'content-type': 'application/json',
     },
     method: 'POST',
     body: JSON.stringify({
-      text: `${claims.email} has succesfully ordered ${message.join(' and ')}`,
+      text: `${email} has succesfully ordered ${message.join(' and ')}`,
     }),
   })
 
