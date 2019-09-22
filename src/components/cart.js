@@ -14,7 +14,8 @@ function Cart() {
         layout.isCartOpen && 'cart-container-open',
       )}
     >
-      <div className="text-right">
+      <div className="flex justify-between mb-4">
+        <span className="text-2xl font-bold">Your Cart</span>
         <button
           className="w-8"
           onClick={() =>
@@ -28,25 +29,44 @@ function Cart() {
           </svg>
         </button>
       </div>
+      <div className="flex justify-between border-b-2">
+        <div className="flex-grow text-left">Product</div>
+        <div className="flex-grow-0 w-20 text-center">Qty.</div>
+        <div className="flex-grow-0 w-20 text-center">Remove</div>
+      </div>
+
       {Object.values(cart.products).map(product => (
-        <div key={product.slug}>
-          {product.name} - {product.quantity} -{' '}
-          {product.price * product.quantity}
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            onClick={() =>
-              dispatch({
-                type: types.DECREASE_QUANTITY,
-                payload: { slug: product.slug },
-              })
-            }
-          >
-            Remove
-          </button>
+        <div
+          key={product.slug}
+          className="flex justify-between items-center py-2 border-b-2 border-gray-200"
+        >
+          <div className="flex-grow text-left">
+            <div className="text-xl">{product.name}</div>
+            <div>€{product.price}</div>
+          </div>
+          <div className="flex-grow-0 w-20 text-center">{product.quantity}</div>
+
+          <div className="flex-grow-0 w-20">
+            <button
+              className="w-8 block m-auto"
+              onClick={() =>
+                dispatch({
+                  type: types.DECREASE_QUANTITY,
+                  payload: { slug: product.slug },
+                })
+              }
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                <path fill="none" d="M0 0h48v48H0z" />
+                <path d="M14 22v4h20v-4H14zM24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm0 36c-8.82 0-16-7.18-16-16S15.18 8 24 8s16 7.18 16 16-7.18 16-16 16z" />
+              </svg>
+            </button>
+          </div>
         </div>
       ))}
+
       <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="btn btn-red w-full mt-8"
         onClick={() =>
           dispatch({
             type: types.CHECKOUT,
@@ -56,12 +76,12 @@ function Cart() {
       >
         Checkout
       </button>
-      <button
+      {/* <button
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         onClick={() => netlifyIdentity.open()}
       >
         Login
-      </button>
+      </button> */}
     </div>
   )
 }
