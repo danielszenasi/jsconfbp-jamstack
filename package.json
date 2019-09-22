@@ -38,7 +38,7 @@
   "scripts": {
     "prebuild": "cd functions/orders && npm i",
     "build": "gatsby build",
-    "develop": "netlify dev",
+    "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
